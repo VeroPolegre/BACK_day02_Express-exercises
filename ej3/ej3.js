@@ -52,16 +52,11 @@ app.delete("/products/delete/:id", (req, res) => {
 });
 
 app.get("/products/filter-by-price/:price", (req, res) => {
-  const minPrice = parseFloat(req.query.minPrice);
-  const maxPrice = parseFloat(req.query.maxPrice);
-
-  if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-    const filteredProducts = products.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
-    );
-    res.json(filteredProducts);
+  const found = products.some((product) => product.price == req.params.price);
+  if (found) {
+    res.send(products.filter((product) => product.price == req.params.price));
   } else {
-    res.status(400).send(`Invalid filter`);
+    res.send(`Product with price: ${req.params.id} not found`);
   }
 });
 
