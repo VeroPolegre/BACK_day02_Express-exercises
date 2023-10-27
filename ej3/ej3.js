@@ -89,7 +89,7 @@ app.get("/products/filter-by-name/:name", (req, res) => {
   const name = req.params.name;
   const found = products.some((products) => products.name === name);
   if (found) {
-    res.json(found);
+    res.send(products.filter((product) => product.name == req.params.name));
   } else {
     res.status(404).send(`Product ${name} not found`);
   }
