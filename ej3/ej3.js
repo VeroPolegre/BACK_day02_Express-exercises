@@ -16,7 +16,7 @@ app.get("/products", (req, res) => {
   res.json({ description: "Products", products });
 });
 
-app.post("/products", (req, res) => {
+app.post("/products/create", (req, res) => {
   const newProduct = {
     id: products.length + 1,
     name: req.body.name,
@@ -27,7 +27,7 @@ app.post("/products", (req, res) => {
   res.status(201).send(products);
 });
 
-app.put("/:id", (req, res) => {
+app.put("/products/update/:id", (req, res) => {
   const found = products.some((product) => product.id == req.params.id);
   if (found) {
     products.forEach((product) => {
@@ -42,7 +42,7 @@ app.put("/:id", (req, res) => {
   }
 });
 
-app.delete("/:id", (req, res) => {
+app.delete("/products/delete/:id", (req, res) => {
   const found = products.some((product) => product.id == req.params.id);
   if (found) {
     res.send(products.filter((product) => product.id != req.params.id));
@@ -51,7 +51,7 @@ app.delete("/:id", (req, res) => {
   }
 });
 
-app.get("/products/:price", (req, res) => {
+app.get("/products/filter-by-price/:price", (req, res) => {
   const minPrice = parseFloat(req.query.minPrice);
   const maxPrice = parseFloat(req.query.maxPrice);
 
@@ -65,7 +65,7 @@ app.get("/products/:price", (req, res) => {
   }
 });
 
-app.get("/products/:price", (req, res) => {
+app.get("/products/filter-by-specific-price/:price", (req, res) => {
   const minPrice = 50;
   const maxPrice = 250;
   const filteredProducts = products.filter(
@@ -81,7 +81,7 @@ app.get("/products/:price", (req, res) => {
   }
 });
 
-app.get("/products/:id", (req, res) => {
+app.get("/products/filter-by-id/:id", (req, res) => {
   const found = products.some((product) => product.id == req.params.id);
   if (found) {
     res.send(products.filter((product) => product.id == req.params.id));
@@ -90,7 +90,7 @@ app.get("/products/:id", (req, res) => {
   }
 });
 
-app.get("/products/:name", (req, res) => {
+app.get("/products/filter-by-name/:name", (req, res) => {
   const name = req.params.name;
   const found = products.some((products) => products.nombre === nombre);
   if (found) {

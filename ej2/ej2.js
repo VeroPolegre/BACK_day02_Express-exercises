@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const PORT = 8081;
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Welcome");
 });
@@ -11,11 +13,11 @@ app.get("/productos", (req, res) => {
 });
 
 app.post("/productos", (req, res) => {
-  res.send("Crear un producto");
+  res.send("Crear un producto " + req.body.name);
 });
 
 app.put("/productos", (req, res) => {
-  res.send("Actualizar un producto");
+  res.send("Actualizar un producto " + req.body.name);
 });
 
 app.delete("/productos", (req, res) => {
@@ -27,11 +29,11 @@ app.get("/usuarios", (req, res) => {
 });
 
 app.post("/usuarios", (req, res) => {
-  res.send("Crear un usuario");
+  res.send("Crear un usuario " + req.body.name);
 });
 
 app.put("/usuarios", (req, res) => {
-  res.send("Actualizar un usuario");
+  res.send("Actualizar un usuario " + req.body.name);
 });
 
 app.delete("/usuarios", (req, res) => {
