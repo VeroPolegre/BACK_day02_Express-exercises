@@ -65,7 +65,7 @@ app.get("/products/filter-by-price/:price", (req, res) => {
   }
 });
 
-app.get("/products/filter-by-specific-price/:price", (req, res) => {
+app.get("/products/filter/50-250", (req, res) => {
   const minPrice = 50;
   const maxPrice = 250;
   const filteredProducts = products.filter(
